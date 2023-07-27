@@ -158,6 +158,7 @@ make_predictions.default <- function(model, pred, pred.values = NULL, at = NULL,
   # Do the predictions using built-in prediction method if robust is FALSE
   if (robust == FALSE) {
     predicted <- as.data.frame(predict(model, newdata = pm,
+                                       level = int.width,
                                        se.fit = interval,
                                        interval = int.type[1],
                                        type = link_or_lm))
@@ -168,6 +169,7 @@ make_predictions.default <- function(model, pred, pred.values = NULL, at = NULL,
       the_vcov <- vcov
     }
     predicted <- as.data.frame(predict_rob(model, newdata = pm,
+                                           level = int.width,
                                            se.fit = interval,
                                            interval = int.type[1],
                                            type = link_or_lm,
